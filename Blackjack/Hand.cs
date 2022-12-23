@@ -75,6 +75,7 @@ namespace Blackjack
                     card.PrintCard();
                     Thread.Sleep(100);
                 }
+                RenderHand();
             }
         }
 
@@ -87,6 +88,19 @@ namespace Blackjack
         public void ToggleHidden()
         {
             hidden = false;
+        }
+
+        public void RenderHand()
+        {
+            for (int i = 0; i < 14; i++)
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (Card card in hand)
+                {
+                    sb.Append(String.Format("{0, -20}", card.Render()[i]));
+                }
+                Console.WriteLine(sb.ToString());
+            }
         }
     }
 }
