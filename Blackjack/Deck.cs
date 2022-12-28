@@ -8,14 +8,18 @@ namespace Blackjack
 {
     internal class Deck
     {
+        //Declare Deck list, which is a list of Card objects
         private List<Card> deck = new List<Card>();
 
+        //Deck constructor, which calls BuildDeck and ShuffleDeck functions
         public Deck()
         {
             BuildDeck();
             ShuffleDeck();
         }
 
+        //For each suit and number, create a card and add it to the empty deck list
+        //Results in a 52 card deck with all available cards
         private void BuildDeck()
         {
             foreach (Card.suits suit in Enum.GetValues(typeof(Card.suits)))
@@ -28,6 +32,7 @@ namespace Blackjack
             }
         }
 
+        //Pseudo-randomly shuffles the order of the deck
         public void ShuffleDeck()
         {
             Random rng = new Random();
@@ -43,6 +48,7 @@ namespace Blackjack
             }
         }
         
+        //Removes the first card from the deck list, and returns it
         public Card DrawCard()
         {
             Card drawnCard = deck[0];

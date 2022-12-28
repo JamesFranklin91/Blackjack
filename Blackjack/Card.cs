@@ -5,11 +5,13 @@ namespace Blackjack
 {
     internal class Card
     {
+        //Enum for playing card suits
         public enum suits
         {
             Hearts, Diamonds, Clubs, Spades
         }
 
+        //Enum for playing card numbers
         public enum numbers
         {
             Ace = 1, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King
@@ -23,36 +25,30 @@ namespace Blackjack
         private string suitSymbol;
         private string numSymbol;
 
+        //Constructor, accepts suit and number as parameters
         public Card(suits _suit, numbers _number)
         {
             suit = _suit;
             number = _number;
 
+            //Sets symbol and number for card rendering 
             SetSymbol(suit);
             SetValue(number);
         }
 
+        //Prints card to console
         public void PrintCard()
         {
             Console.WriteLine("{0} of {1} ({2})", number, suit, value);
-            //RenderCard();
         }
 
-        public suits GetSuit()
-        {
-            return suit;
-        }
-
-        public numbers GetNumber()
-        {
-            return number;
-        }
-
+        //Gets value of card
         public int GetValue()
         {
             return value;
         }
 
+        //Sets value of card
         private void SetValue(numbers number)
         {
             switch (number)
@@ -114,18 +110,20 @@ namespace Blackjack
             }
         }
 
+        //Check status of ace
         public bool CheckAce()
         {
             return ace;
         }
 
+        //Changes value of ace to 1, and status to false
         public void ToggleAce()
         {
             ace = false;
             value = 1;
         }
 
-        //Card rendering
+        //Card rendering functions
         private void SetSymbol(suits suit)
         {
             switch (suit)
@@ -145,14 +143,7 @@ namespace Blackjack
             }
         }
 
-        public void RenderCard()
-        {
-            foreach (string line in Render())
-            {
-                Console.WriteLine(line);
-            }
-        }
-
+        //Card layouts for each type of card
         public List<string> Render()
         {
             switch (numSymbol)
@@ -361,14 +352,19 @@ namespace Blackjack
                     return new List<string>();
             }
         }
+
+        //Pattern of suit symbols on the card
         private string RenderPattern(int pattern, string suit)
         {
             switch (pattern)
             {
+                //Blank row
                 case (0):
                     return String.Format("{0, -8} {0, 8}", "|");
+                //Single suit symbol
                 case (1):
                     return String.Format("{0, -7} {1, 0} {0, 7}", "|", suit);
+                //Pair of suit symbols
                 case (2):
                     return String.Format("{0, -4} {1, -3} {1, 3} {0, 4}", "|", suit);
                 default:
