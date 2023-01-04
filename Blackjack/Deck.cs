@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blackjack
 {
-    internal class Deck
+    public class Deck
     {
         //Declare Deck list, which is a list of Card objects
         private List<Card> deck = new List<Card>();
@@ -54,6 +54,11 @@ namespace Blackjack
             Card drawnCard = deck[0];
             deck.RemoveAt(0);
             return drawnCard;
+        }
+
+        public List<Card> GetDeck()
+        {
+            return deck;
         }
     }
 }
