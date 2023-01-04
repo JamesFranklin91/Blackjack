@@ -107,8 +107,9 @@ namespace Blackjack
                         Console.WriteLine("Invalid input!");
                     }
                 }
+                //------------------------
                 //Dealers turn, ending until dealer busts or hand value is 17 or greater
-                //House rules: 1. dealer hits when below 17, and stands whens 17 or above
+                //House rules: Dealer always hits when below 17, and always stands whens 17 or above
                 while (dealerTurn)
                 {
                     if (dealerHand.GetHandValue() < 17)
