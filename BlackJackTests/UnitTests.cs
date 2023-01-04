@@ -58,6 +58,7 @@ namespace BlackjackTests
             Assert.AreEqual(expectedHandTotal, actual);
         }
 
+        //Ensure hand total is 21 if hand is King and Ace
         [TestMethod]
         public void Hand_WhenKingAce_ShouldScoreTwentyOne()
         {
@@ -74,6 +75,7 @@ namespace BlackjackTests
             Assert.AreEqual(expectedScore, actual);
         }
 
+        //Ensure hand total is 21 if hand is King, Queen, and Ace
         [TestMethod]
         public void Hand_WhenKingQueenAce_ShouldScoreTwentyOne()
         {
@@ -90,6 +92,8 @@ namespace BlackjackTests
             int actual = hand.GetHandValue();
             Assert.AreEqual(expectedScore, actual);
         }
+
+        //Ensure hand total is 21 if hand is Nine, Ace, and Ace
 
         [TestMethod]
         public void Hand_WhenNineAceAce_ShouldScoreTwentyOne()
