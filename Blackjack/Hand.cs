@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace Blackjack
 {
-    public class Hand
+    internal class Hand
     {
         private List<Card> hand = new List<Card>();
         private int value = 0;
@@ -70,19 +70,18 @@ namespace Blackjack
         {
             Console.WriteLine("{0} hand:", name);
             Thread.Sleep(100);
-            
             if (hidden)
             {
-                Console.WriteLine(String.Format("{0}, ?", hand[0].GetCard()));
+                hand[0].PrintCard();
+                Thread.Sleep(100);
+                Console.WriteLine("?");
             } else
             {
-                StringBuilder sb = new StringBuilder();
                 foreach (Card card in hand)
                 {
-                    sb.Append(String.Format("{0}, ", card.GetCard()));
+                    card.PrintCard();
+                    Thread.Sleep(100);
                 }
-                sb.Length -= 2;
-                Console.WriteLine(sb);
                 RenderHand();
             }
         }

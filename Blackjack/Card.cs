@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Blackjack
 {
-    public class Card
+    internal class Card
     {
         //Enum for playing card suits
         public enum suits
@@ -36,16 +36,10 @@ namespace Blackjack
             SetValue(number);
         }
 
-        //Get string of the card
-        public string GetCard()
-        {
-            return String.Format("{0} of {1} ({2})", number, suit, value);
-        }
-
-        //Print card to the console
+        //Prints card to console
         public void PrintCard()
         {
-            Console.WriteLine(GetCard());
+            Console.WriteLine("{0} of {1} ({2})", number, suit, value);
         }
 
         //Gets value of card
