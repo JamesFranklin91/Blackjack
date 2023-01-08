@@ -60,7 +60,7 @@ namespace BlackjackTests
 
         //Ensure hand total is 21 if hand is King and Ace
         [TestMethod]
-        public void Hand_WhenKingAce_ShouldScoreTwentyOne()
+        public void HandHit_WhenKingAce_ShouldScoreTwentyOne()
         {
             // Arrange
             int expectedScore = 21;
@@ -77,7 +77,7 @@ namespace BlackjackTests
 
         //Ensure hand total is 21 if hand is King, Queen, and Ace
         [TestMethod]
-        public void Hand_WhenKingQueenAce_ShouldScoreTwentyOne()
+        public void HandHit_WhenKingQueenAce_ShouldScoreTwentyOne()
         {
             // Arrange
             int expectedScore = 21;
@@ -96,7 +96,7 @@ namespace BlackjackTests
         //Ensure hand total is 21 if hand is Nine, Ace, and Ace
 
         [TestMethod]
-        public void Hand_WhenNineAceAce_ShouldScoreTwentyOne()
+        public void HandHit_WhenNineAceAce_ShouldScoreTwentyOne()
         {
             // Arrange
             int expectedScore = 21;

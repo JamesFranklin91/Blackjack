@@ -9,7 +9,9 @@ namespace Blackjack
 {
     public class Hand
     {
+        //hand is a list of Cards
         private List<Card> hand = new List<Card>();
+
         private int value = 0;
         private string name;
         private bool hidden;
@@ -21,7 +23,13 @@ namespace Blackjack
             hidden = _hidden;
         }
 
-        //Adds the parameter card into the hand
+        //Toggle hidden for dealer hole card, so it can be revealed
+        public void ToggleHidden()
+        {
+            hidden = false;
+        }
+
+        //Adds the parameter card into the hand, and calculates the new value of the hand
         public void hit(Card card)
         {
             hand.Add(card);
@@ -33,7 +41,7 @@ namespace Blackjack
                 {
                     if (hand[i].CheckAce())
                     {
-                        hand[i].ToggleAce();
+                        hand[i].AceToOne();
                         value -= 10;
                         break;
                     }
@@ -53,29 +61,23 @@ namespace Blackjack
             return hand;
         }
 
-        //Prints hand cards and hand value
+        //Prints and renders hand cards and hand value
         public void PrintHandInfo()
-        {
-            PrintHand();
-            //If dealer hand is still hidden, do not print value
-            if (!hidden)
-                PrintHandValue();
-            else
-                Console.WriteLine(" ");
-
-            Thread.Sleep(500);
-        }
-
-        public void PrintHand()
         {
             Console.WriteLine("{0} hand:", name);
             Thread.Sleep(100);
-            
+
+            //If dealer hole card is hidden, only print and render 1st card, print card back for hole card
             if (hidden)
             {
                 Console.WriteLine(String.Format("{0}, ?", hand[0].GetCard()));
-            } else
+                //Render cards side by side
+                RenderHand();
+                Console.WriteLine("({0} hand value at least: {1})\n", name, hand[0].GetValue());
+            }
+            else
             {
+                //Print each card on one line
                 StringBuilder sb = new StringBuilder();
                 foreach (Card card in hand)
                 {
@@ -83,18 +85,11 @@ namespace Blackjack
                 }
                 sb.Length -= 2;
                 Console.WriteLine(sb);
+                //Render cards side by side
                 RenderHand();
+                Console.WriteLine("({0} hand value: {1})\n", name, value);
             }
-        }
-
-        public void PrintHandValue()
-        {
-            Console.WriteLine("({0} hand value: {1})\n", name, value);
-        }
-
-        public void ToggleHidden()
-        {
-            hidden = false;
+            Thread.Sleep(500);
         }
 
         //Renders entire hand, one line at a time
@@ -105,9 +100,18 @@ namespace Blackjack
             {
                 //Build each line by creating a StringBuilder of each card on each row
                 StringBuilder sb = new StringBuilder();
-                foreach (Card card in hand)
+
+                //If dealer hole card is hidden, only render 1st card and card back, otherwise render entire hand
+                if (hidden)
                 {
-                    sb.Append(String.Format("{0, -20}", card.Render()[i]));
+                    sb.Append(String.Format("{0, -20}", hand[0].Render()[i]));
+                    sb.Append(String.Format("{0, -20}", hand[1].CardBackRender()[i]));
+                } else
+                {
+                    foreach (Card card in hand)
+                    {
+                        sb.Append(String.Format("{0, -20}", card.Render()[i]));
+                    }
                 }
                 Console.WriteLine(sb.ToString());
             }

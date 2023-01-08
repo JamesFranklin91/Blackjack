@@ -134,7 +134,7 @@ namespace Blackjack
                     {
                         //Dealer stands when 17 or above
                         Console.WriteLine("*Dealer Stands!*\n");
-                        Thread.Sleep(2000);
+                        Thread.Sleep(1000);
                         //Compare hand values. 
                         //Player hand exceeds dealer hand, player wins
                         if (dealerHand.GetHandValue() < playerHand.GetHandValue())

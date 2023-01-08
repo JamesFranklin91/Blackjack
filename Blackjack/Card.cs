@@ -19,8 +19,7 @@ namespace Blackjack
 
         private suits suit;
         private numbers number;
-        private int value;
-        private bool ace = false;
+        private int value; 
 
         private string suitSymbol;
         private string numSymbol;
@@ -31,7 +30,6 @@ namespace Blackjack
             suit = _suit;
             number = _number;
 
-            //Sets symbol and number for card rendering 
             SetSymbol(suit);
             SetValue(number);
         }
@@ -62,7 +60,6 @@ namespace Blackjack
                 case numbers.Ace:
                     value = 11;
                     numSymbol = "A";
-                    ace = true;
                     break;
                 case numbers.Two:
                     value = 2;
@@ -119,17 +116,23 @@ namespace Blackjack
         //Check status of ace
         public bool CheckAce()
         {
-            return ace;
+            if(value == 11)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
 
-        //Changes value of ace to 1, and status to false
-        public void ToggleAce()
+        //Changes value of ace to 1
+        public void AceToOne()
         {
-            ace = false;
             value = 1;
         }
 
         //Card rendering functions
+        //Sets the suit symbol
         private void SetSymbol(suits suit)
         {
             switch (suit)
@@ -149,7 +152,7 @@ namespace Blackjack
             }
         }
 
-        //Card layouts for each type of card
+        //Card layouts for each type of card for rendering
         public List<string> Render()
         {
             switch (numSymbol)
@@ -376,6 +379,27 @@ namespace Blackjack
                 default:
                     return "";
             }
+        }
+
+        public List<string> CardBackRender()
+        {
+            return new List<string>
+                    {
+                        " _______________",
+                        String.Format("{0, -8} {1, 8}", "/", "\\"),
+                        String.Format("{0, -1} #@#@#@#@#@#@# {0, 1}", "|", numSymbol),
+                        String.Format("{0, -1} @#@#@#@#@#@#@ {0, 1}", "|", numSymbol),
+                        String.Format("{0, -1} #@#@#@#@#@#@# {0, 1}", "|", numSymbol),
+                        String.Format("{0, -1} @#@#@#@#@#@#@ {0, 1}", "|", numSymbol),
+                        String.Format("{0, -1} #@#@#@#@#@#@# {0, 1}", "|", numSymbol),
+                        String.Format("{0, -1} @#@#@#@#@#@#@ {0, 1}", "|", numSymbol),
+                        String.Format("{0, -1} #@#@#@#@#@#@# {0, 1}", "|", numSymbol),
+                        String.Format("{0, -1} @#@#@#@#@#@#@ {0, 1}", "|", numSymbol),
+                        String.Format("{0, -1} #@#@#@#@#@#@# {0, 1}", "|", numSymbol),
+                        String.Format("{0, -1} @#@#@#@#@#@#@ {0, 1}", "|", numSymbol),
+                        String.Format("{0, -1} #@#@#@#@#@#@# {0, 1}", "|", numSymbol),
+                        "\\_______________/"
+                    };
         }
     }
 }

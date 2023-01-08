@@ -39,6 +39,7 @@ namespace Blackjack
             deck = deck.OrderBy(card => rng.Next()).ToList();
         }
 
+        //Prints each card in the deck for debugging purposes
         public void PrintDeck()
         {
             Console.WriteLine("Total cards in deck: {0}", deck.Count);
@@ -56,6 +57,7 @@ namespace Blackjack
             return drawnCard;
         }
 
+        //Returns deck list
         public List<Card> GetDeck()
         {
             return deck;
